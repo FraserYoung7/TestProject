@@ -74,6 +74,7 @@ public class TransactionDetails {
 		return categoryTransactionsInYear;
 	}
 	
+	/** Return transactions for a given category/month */
 	private ArrayList<Transaction> getTransactionsInCategoryByMonth(String category, int month) {
 		
 		//create new ArrayList to hold list of transactions of that category/month
@@ -99,11 +100,14 @@ public class TransactionDetails {
 	/** Return total outgoing per category */
 	public Map<String, Double> getTotalOutgoings(){
 	
+		//Create new Map to store category + total outgoing
 		Map<String, Double> totalOutgoings = new HashMap<String, Double>();
 		
 		for(Transaction transaction : transactions) {
-			double totalOutgoingByCategory = getTotalOutgoingByCategory(transaction.getCategory());
-			if(!(totalOutgoings.containsKey(transaction.getCategory()))) {
+			if(!totalOutgoings.containsKey(transaction.getCategory())){
+				// get total outgoing for each category
+				double totalOutgoingByCategory = getTotalOutgoingByCategory(transaction.getCategory());
+				// add category and total to the map
 				totalOutgoings.put(transaction.getCategory(), totalOutgoingByCategory);
 			}
 		}
@@ -131,9 +135,11 @@ public class TransactionDetails {
 	/** Return monthly averages per category */
 	public Map<Integer, Double> getMonthlyAveragesByCategory(String category){
 	
+		//create map to contain month number and monthly average
 		Map<Integer, Double> monthlyAverages = new HashMap<Integer, Double>();
 		double monthlyAverage = 0;
 		
+		//loop for each month and add month+average to the map
 		for(int i = 0; i<12; i++) {
 			monthlyAverage = getMonthlyAverageByCategory(category, i);
 			monthlyAverages.put(i+1, monthlyAverage);
@@ -143,18 +149,21 @@ public class TransactionDetails {
 	}
 	
 	
+	/** Return monthly average for a given category/month */
 	private double getMonthlyAverageByCategory(String category, int month) {
 		
 		double monthlyAverage = 0;
+		// get all transactions for that category/month
 		ArrayList<Transaction> categoryTransactionsInMonth = getTransactionsInCategoryByMonth(category, month);
 
 		if(categoryTransactionsInMonth.size() > 0) {
-			//loop list to check for transactions of that category
+			//loop list of transactions
 			for(Transaction transaction : categoryTransactionsInMonth) {
-				//update totalOutgoings for that category
+				//update monthly total for that category
 				monthlyAverage += transaction.getTransactionAmount();
 			}
 
+			//calculate average by total/number of transactions
 			monthlyAverage /= categoryTransactionsInMonth.size();
 
 			return monthlyAverage;
@@ -167,6 +176,7 @@ public class TransactionDetails {
 	/** Returns highest spend in a given category/year */
 	public double getHighestSpendInCategoryByYear(String category, int year) {
 
+		//get list of transactions for that category/year
 		ArrayList<Transaction> categoryTransactionsInYear = getTransactionsInCategoryByYear(category, year);
 
 		//get highest spend transaction
@@ -188,6 +198,7 @@ public class TransactionDetails {
 	/** Returns lowest spend in a given category/year*/
 	public double getLowestSpendInCategoryByYear(String category, int year) {
 
+		//get list of transactions for that category/year
 		ArrayList<Transaction> categoryTransactionsInYear = getTransactionsInCategoryByYear(category, year);
 
 		//get lowest spend transaction

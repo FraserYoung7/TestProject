@@ -20,6 +20,7 @@ public class Main {
 		Transaction transaction4 = new Transaction(formatter.parse("01-10-2020"), "M&S", "card", 5.99, "Groceries");
 		Transaction transaction5 = new Transaction(formatter.parse("30-09-2020"), "McMillan", "internet", 10, "");
 		Transaction transaction6 = new Transaction(formatter.parse("01-01-2019"), "Test", "card", 15.99, "Groceries");
+		Transaction transaction7 = new Transaction(formatter.parse("28-11-2020"), "Test2", "internet", 30, "Groceries");
 		
 		//add transaction data
 		transactionDetails.add(transaction1);
@@ -28,6 +29,7 @@ public class Main {
 		transactionDetails.add(transaction4);
 		transactionDetails.add(transaction5);
 		transactionDetails.add(transaction6);
+		transactionDetails.add(transaction7);
 		
 		ArrayList<Transaction> groceries = transactionDetails.getTransactionsByCategory("Groceries");
 		System.out.println("All Groceries transactions:");
