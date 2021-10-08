@@ -1,4 +1,4 @@
-package mypackage;
+package main;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,8 +19,6 @@ public class Main {
 		Transaction transaction3 = new Transaction(formatter.parse("28-10-2020"), "PureGym", "direct debit", 40, "MyMonthlyDD");
 		Transaction transaction4 = new Transaction(formatter.parse("01-10-2020"), "M&S", "card", 5.99, "Groceries");
 		Transaction transaction5 = new Transaction(formatter.parse("30-09-2020"), "McMillan", "internet", 10, "");
-		Transaction transaction6 = new Transaction(formatter.parse("01-01-2019"), "Test", "card", 15.99, "Groceries");
-		Transaction transaction7 = new Transaction(formatter.parse("28-11-2020"), "Test2", "internet", 30, "Groceries");
 		
 		//add transaction data
 		transactionDetails.add(transaction1);
@@ -28,8 +26,6 @@ public class Main {
 		transactionDetails.add(transaction3);
 		transactionDetails.add(transaction4);
 		transactionDetails.add(transaction5);
-		transactionDetails.add(transaction6);
-		transactionDetails.add(transaction7);
 		
 		ArrayList<Transaction> groceries = transactionDetails.getTransactionsByCategory("Groceries");
 		System.out.println("All Groceries transactions:");
@@ -52,17 +48,23 @@ public class Main {
 		Map<Integer,Double> monthlyAverages2 = transactionDetails.getMonthlyAveragesByCategory("Groceries");
 		System.out.println("\nMonthly Averages for Groceries category: " + monthlyAverages2);
 		
-		double highestSpend2020 = transactionDetails.getHighestSpendInCategoryByYear("Groceries", 2020);
-		System.out.println("\nGroceries 2020 Highest Spend: " + highestSpend2020);
+		double groceriesHighest2020 = transactionDetails.getHighestSpendInCategoryByYear("Groceries", 2020);
+		System.out.println("\nGroceries 2020 Highest Spend: " + groceriesHighest2020);
 		
-		double highestSpend2019 = transactionDetails.getHighestSpendInCategoryByYear("Groceries", 2019);
-		System.out.println("\nGroceries 2019 Highest Spend: " + highestSpend2019);
+		double ddHighest2020 = transactionDetails.getHighestSpendInCategoryByYear("MyMonthlyDD", 2020);
+		System.out.println("\nMyMonthlyDD 2020 Highest Spend: " + ddHighest2020);
 		
-		double lowestSpend2020 = transactionDetails.getLowestSpendInCategoryByYear("MyMonthlyDD", 2020);
-		System.out.println("\nMyMonthlyDD 2020 Lowest Spend: " + lowestSpend2020);
+		double groceriesHighest2019 = transactionDetails.getHighestSpendInCategoryByYear("Groceries", 2019);
+		System.out.println("\nGroceries 2019 Highest Spend: " + groceriesHighest2019);
 		
-		double lowestSpend2019 = transactionDetails.getLowestSpendInCategoryByYear("MyMonthlyDD", 2019);
-		System.out.println("\nMyMonthlyDD 2019 Lowest Spend: " + lowestSpend2019);
+		double groceriesLowest2020 = transactionDetails.getLowestSpendInCategoryByYear("Groceries", 2020);
+		System.out.println("\nGroceries 2020 Lowest Spend: " + groceriesLowest2020);
+		
+		double ddLowest2020 = transactionDetails.getLowestSpendInCategoryByYear("MyMonthlyDD", 2020);
+		System.out.println("\nMyMonthlyDD 2020 Lowest Spend: " + ddLowest2020);
+		
+		double ddLowest2019 = transactionDetails.getLowestSpendInCategoryByYear("MyMonthlyDD", 2019);
+		System.out.println("\nMyMonthlyDD 2019 Lowest Spend: " + ddLowest2019);
 	}
 
 }

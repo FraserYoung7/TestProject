@@ -1,4 +1,4 @@
-package mypackage;
+package main;
 
 import java.util.Date;
 
@@ -9,6 +9,10 @@ public class Transaction {
 	private String transactionType;
 	private double transactionAmount;
 	private String category;
+	
+	public Transaction() {
+		
+	}
 	
 	public Transaction(Date transactionDate, String vendor, String transactionType, double transactionAmount, String category) {
 		this.transactionDate = transactionDate;
